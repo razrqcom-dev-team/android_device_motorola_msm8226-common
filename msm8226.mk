@@ -62,6 +62,11 @@ PRODUCT_PACKAGES += \
     fibmap.f2fs \
     wcnss_service
 
+# VT_JNI
+PRODUCT_PACKAGES += \
+    libvt_jni \
+    libimscamera_jni
+
 # Wifi
 PRODUCT_COPY_FILES += \
     kernel/motorola/msm8226/drivers/net/wireless/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
