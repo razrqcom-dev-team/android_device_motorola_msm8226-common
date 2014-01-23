@@ -28,7 +28,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 TARGET_CPU_VARIANT := krait
-BOARD_INIT_SET_ROHW := true
 
 -include device/motorola/qcom-common/BoardConfigCommon.mk
 
