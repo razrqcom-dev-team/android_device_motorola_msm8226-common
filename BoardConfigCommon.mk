@@ -70,8 +70,8 @@ TARGET_DISPLAY_USE_RETIRE_FENCE :=
 
 TARGET_QCOM_MEDIA_VARIANT := caf-new
 
-# Kernel handles input boosting
-TARGET_POWERHAL_NO_TOUCH_BOOST := true
+# Use stock power hal
+TARGET_USES_CM_POWERHAL :=
 
 # Hardware tunables framework
 BOARD_HARDWARE_CLASS := device/motorola/msm8226-common/cmhw/
