@@ -27,7 +27,7 @@ BOARD_VENDOR := motorola-qcom
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
-TARGET_CPU_VARIANT := krait
+TARGET_CPU_VARIANT := cortex-a7
 
 -include device/motorola/qcom-common/BoardConfigCommon.mk
 
