@@ -26,7 +26,11 @@ PRODUCT_PACKAGES += \
     audio_policy.msm8226 \
     libaudioparameter \
     libqcomvisualizer \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing \
+    tinycap \
+    tinymix \
+    tinypcminfo \
+    tinyplay
 
 # Ebtables
 PRODUCT_PACKAGES += \
