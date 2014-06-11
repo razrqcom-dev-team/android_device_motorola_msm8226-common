@@ -106,13 +106,11 @@ bin/fmconfig
 bin/fm_qsoc_patches
 
 # GPS
--app/com.qualcomm.location.apk
 bin/location-mq
 etc/permissions/com.qualcomm.location.xml
 etc/xtwifi.conf
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
-#vendor/lib/hw/flp.default.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
@@ -289,7 +287,6 @@ etc/firmware/venus.mdt
 
 # Misc
 bin/bridgemgrd
-bin/charger_monitor
 bin/ds_fmc_appd
 bin/ftmipcd
 bin/nl_listener
