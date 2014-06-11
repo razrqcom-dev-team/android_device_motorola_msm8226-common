@@ -249,12 +249,6 @@ on property:bluetooth.isEnabled=true
     start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-on property:bluetooth.sap.status=running
-    start bt-sap
-
-on property:bluetooth.sap.status=stopped
-    stop bt-sap
-
 service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
     class core
     user root
@@ -303,12 +297,18 @@ service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh
     user root
     oneshot
 
-service bt-sap /system/bin/sapd 15
+service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+    class late_start
     user bluetooth
     group bluetooth net_bt_admin
-    class late_start
     disabled
     oneshot
+
+on property:bluetooth.hciattach=true
+    start hciattach
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
 
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
@@ -474,7 +474,7 @@ service xtwifi_client /system/bin/xtwifi-client
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
     user root
-    group system qcom_oncrpc fm_radio
+    group system fm_radio
     disabled
     oneshot
 
@@ -523,14 +523,6 @@ service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
 on property:persist.data.ds_fmc_app.mode=1
     start ds_fmc_appd
 
-#service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-#    class late_start
-#    group qcom_oncrpc net_bt_admin inet radio wifi
-#    disabled
-
-#on property:persist.ims.regmanager.mode=1
-#    start ims_regmanager
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
@@ -541,7 +533,7 @@ service ril-daemon1 /system/bin/rild -c 1
     socket rild-debug1 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_oncrpc diag qcom_diag log
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 service ril-daemon2 /system/bin/rild -c 2
     class main
@@ -549,7 +541,7 @@ service ril-daemon2 /system/bin/rild -c 2
     socket rild-debug2 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_oncrpc diag qcom_diag log
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
@@ -560,8 +552,11 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk
 
 # Binding fuse mount point to /storage/emulated/legacy
 on property:init.svc.sdcard=running
-    wait /mnt/shell/emulated/0 600
+    wait /mnt/shell/emulated/0
     mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+
+service charger /charger
+    class charger
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -571,6 +566,11 @@ service ssr_diag /system/bin/ssr_diag
 # SSR setting
 on property:persist.sys.ssr.restart_level=*
     exec /system/bin/sh /init.qcom.ssr.sh ${persist.sys.ssr.restart_level}
+
+service hvdcp /system/bin/hvdcp
+    class core
+    user root
+    disabled
 
 # CM Performance Profiles
 
