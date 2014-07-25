@@ -52,7 +52,7 @@ rm -rf $DEVICE_BASE/*
 extract ../../$VENDOR/$DEVICE/device-proprietary-files.txt $DEVICE_BASE
 
 # Check if their is a common device tree for this device
-if [ $COMMON_DEVICE != "" ]; then
+if [ ! -z $COMMON_DEVICE ]; then
     COMMON_BASE=../../../vendor/$VENDOR/$COMMON_DEVICE/proprietary
     rm -rf $COMMON_BASE/*
 
@@ -62,6 +62,10 @@ if [ $COMMON_DEVICE != "" ]; then
     fi
     # Extract the files common to all devices using this common device tree
     extract ../../$VENDOR/$COMMON_DEVICE/common-proprietary-files.txt $COMMON_BASE
+
+    ../$COMMON_DEVICE/setup-makefiles.sh
+else
+    ./setup-makefiles.sh
 fi
 
-../$COMMON_DEVICE/setup-makefiles.sh
+

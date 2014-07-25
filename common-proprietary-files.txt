@@ -1,5 +1,6 @@
 # ADSP
 bin/adsprpcd
+lib/libtinyalsa.so
 vendor/lib/libadsprpc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
@@ -67,7 +68,6 @@ vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_mt9m114.so
-vendor/lib/libmmcamera_sp1628.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera_wavelet_lib.so

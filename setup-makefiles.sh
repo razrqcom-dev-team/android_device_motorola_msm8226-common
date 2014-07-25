@@ -97,7 +97,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
 
-if [ $COMMON_DEVICE != "" ]; then
+if [ ! -z $COMMON_DEVICE ]; then
   echo "\$(call inherit-product, vendor/$VENDOR/$COMMON_DEVICE/$COMMON_DEVICE-vendor.mk)" >> $VENDOR_MAKEFILE
   echo "" >> $VENDOR_MAKEFILE
 else
@@ -506,7 +506,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "ifeq (\$(BOARD_VENDOR),$BOARD_VENDOR)" >> ../../../$COMMON_OUTDIR/proprietary/app/Android.mk
 fi
 echo "ifeq (\$(TARGET_BOARD_PLATFORM),$TARGET_BOARD_PLATFORM)" >> ../../../$COMMON_OUTDIR/proprietary/app/Android.mk
@@ -539,7 +539,7 @@ echo "    $apkmodulename$LINEEND" >> $COMMON_VENDOR_MAKEFILE
 done
 echo "" >> $COMMON_VENDOR_MAKEFILE
 echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/app/Android.mk
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/app/Android.mk
 fi
 fi
@@ -566,7 +566,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "ifeq (\$(BOARD_VENDOR),$BOARD_VENDOR)" >> ../../../$COMMON_OUTDIR/proprietary/framework/Android.mk
 fi
 echo "ifeq (\$(TARGET_BOARD_PLATFORM),$TARGET_BOARD_PLATFORM)" >> ../../../$COMMON_OUTDIR/proprietary/framework/Android.mk
@@ -599,7 +599,7 @@ echo "    $jarmodulename$LINEEND" >> $COMMON_VENDOR_MAKEFILE
 done
 echo "" >> $COMMON_VENDOR_MAKEFILE
 echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/framework/Android.mk
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/framework/Android.mk
 fi
 fi
@@ -626,7 +626,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "ifeq (\$(BOARD_VENDOR),$BOARD_VENDOR)" >> ../../../$COMMON_OUTDIR/proprietary/priv-app/Android.mk
 fi
 echo "ifeq (\$(TARGET_BOARD_PLATFORM),$TARGET_BOARD_PLATFORM)" >> ../../../$COMMON_OUTDIR/proprietary/priv-app/Android.mk
@@ -660,7 +660,7 @@ echo "    $privmodulename$LINEEND" >> $COMMON_VENDOR_MAKEFILE
 done
 echo "" >> $COMMON_VENDOR_MAKEFILE
 echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/priv-app/Android.mk
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/priv-app/Android.mk
 fi
 fi
@@ -689,7 +689,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "ifeq (\$(BOARD_VENDOR),$BOARD_VENDOR)" >> ../../../$COMMON_OUTDIR/proprietary/lib/Android.mk
 fi
 echo "ifeq (\$(TARGET_BOARD_PLATFORM),$TARGET_BOARD_PLATFORM)" >> ../../../$COMMON_OUTDIR/proprietary/lib/Android.mk
@@ -723,7 +723,7 @@ echo "    $libmodulename$LINEEND" >> $COMMON_VENDOR_MAKEFILE
 done
 echo "" >> $COMMON_VENDOR_MAKEFILE
 echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/lib/Android.mk
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/lib/Android.mk
 fi
 fi
@@ -752,7 +752,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "ifeq (\$(BOARD_VENDOR),$BOARD_VENDOR)" >> ../../../$COMMON_OUTDIR/proprietary/vendor/lib/Android.mk
 fi
 echo "ifeq (\$(TARGET_BOARD_PLATFORM),$TARGET_BOARD_PLATFORM)" >> ../../../$COMMON_OUTDIR/proprietary/vendor/lib/Android.mk
@@ -785,7 +785,7 @@ EOF
 echo "    $vendorlibmodulename$LINEEND" >> $COMMON_VENDOR_MAKEFILE
 done
 echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/vendor/lib/Android.mk
-if [ $BOARD_VENDOR != "" ]; then
+if [ ! -z $BOARD_VENDOR ]; then
   echo "endif" >> ../../../$COMMON_OUTDIR/proprietary/vendor/lib/Android.mk
 fi
 fi
